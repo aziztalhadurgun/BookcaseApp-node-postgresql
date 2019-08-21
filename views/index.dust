@@ -1,0 +1,112 @@
+{>"layout" /}
+{<body}
+    <br/>
+    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">
+          Kitap Ekle
+    </button>
+    <br/>
+
+    {#books}
+       <div class="well">
+            <h4>{name}
+            <button class="btn btn-default pull-right" data-toggle="collapse" href="#book_{id}" aria-expanded="false" aria-controls="book_{id}">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+            </button>
+            </h4>
+            <div class="collapse" id="book_{id}">
+                <br />
+                <br />
+                <p><strong>Yazarı: </strong>{author}</p>
+                <p><strong>Özeti: </strong>{summary}</p>
+                <br />
+                <hr />
+                <button class="btn btn-primary edit-book" 
+                    data-toggle="modal" 
+                    data-target="#editFormModal"
+                    data-id="{id}"
+                    data-name="{name}"
+                    data-author="{author}"
+                    data-summary="{summary}"
+                >
+                    <span class="glyphicon glyphicon-edit" aria-hiddem="true"></span>
+                </button>
+                <button class="btn btn-danger delete-book" data-id="{id}" aria-hiddem="true">
+                    <span class="glyphicon glyphicon-remove" aria-hiddem="true"></span>
+                </button>
+            </div>
+       </div>
+    {/books}
+
+    <!-- Add Modal Form-->
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" action="/add">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="formModalLabel">Yeni Kitap Ekle</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Kitap Adı</label>
+                            <input type="text" class="form-control" name="name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Yazarı</label>
+                            <input type="text" class="form-control" name="author"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Özeti</label>
+                            <textarea class="form-control" name="summary"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <input type="submit" class="btn btn-primary" value="Kaydet"/>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>  
+
+
+
+    <!-- Edit Form Modal -->
+    <div class="modal fade" id="editFormModal" tabindex="-1" role="dialog" aria-labelledby="editFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" action="/edit">
+                    <input type="hidden" id="edit-form-id" name="id"/>
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="editFormModalLabel">Kitap Güncelle</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Kitap Adı</label>
+                            <input type="text" class="form-control" name="name" id="edit-form-name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Yazarı</label>
+                            <input type="text" class="form-control" name="author" id="edit-form-author"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Özeti</label>
+                            <textarea class="form-control" name="summary" id="edit-form-summary"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <input type="submit" class="btn btn-primary" value="Kaydet"/>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>  
+
+{/body}    
+
