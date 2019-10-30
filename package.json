@@ -15,6 +15,6 @@
     "dustjs-helpers": "*",
     "dustjs-linkedin": "*",
     "express": "*",
-    "pg": "7.0.0"
+    "pg": "7.12.1"
   }
 }
